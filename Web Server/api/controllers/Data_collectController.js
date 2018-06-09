@@ -275,6 +275,18 @@ module.exports = {
                     if(err) return res.negotiate(err);
                   });
                 }//if
+
+                if(validData.locked != true){ //
+                  Warning.create({
+                    devid: validData.devid,
+                    packetid: validData.packetid,
+                    timestamp: validData.timestamp,
+                    message: 'Cửa đang mở!',
+                  }, function(err, createdRecord){
+                    console.log({WARNING : createdRecord.message});
+                    if(err) return res.negotiate(err);
+                  });
+                }//if
               }//if
 
               Data_collect.create(validData).exec(function(err, createdRecord) {
