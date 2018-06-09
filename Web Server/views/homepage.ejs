@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Long Distance Transportation Monitoring System</title>
+    <link rel="icon" type="image/png" href="./images/static/ico.png">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="./styles/homepage/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="./styles/homepage/bootstrap.css" rel="stylesheet"> -->
+    <!-- <link href="./styles/bootstrap.css" rel="stylesheet"> -->
+    <link href="./styles/homepage/mbr-custom.css" rel="stylesheet">
+    <link href="./styles/custom.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="./styles/homepage/stylish-portfolio.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/mobirise/mobirise-icons.css">
+    <link rel="stylesheet" href="/styles/mobirise/css/dropdown/style.css">
+    <link rel="stylesheet" href="/styles/mobirise/css/mbr-additional.css">
+    <link rel="stylesheet" type="text/css" href="/styles/angular-toastr.css">
+    <link rel="stylesheet" type="text/css" href="/styles/ng-cloak.css">
+
+    <!-- Custom Fonts -->
+    <link href="./fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+
+<body ng-app="HomepageModule" ng-controller="HomepageController" ng-cloak>
+
+    <!-- N A V I G A T I O N -->
+
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent" style="background-color: #0c000e">
+
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                <span class="navbar-caption-wrap"><a style="color: white" class="navbar-caption text-white display-4" href="/">Transportation Monitoring</a></span>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true" >
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="#top" style="color: white; font-size: 2rem">
+                        <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                        My University</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="#about" style="color: white; font-size: 2rem">
+                        <span class="mbri-user mbr-iconfont mbr-iconfont-btn"></span>                    
+                        About Me &nbsp;</a>
+                </li>
+
+                <li class="nav-item"><a style="color: white; font-size: 2rem" class="nav-link link text-white display-4" href="#services"><span class="mbri-key mbr-iconfont mbr-iconfont-btn"></span>    
+                        Our Solutions</a>
+                </li>
+
+                <li class="nav-item">
+                    <a style="color: white; font-size: 2rem" class="nav-link link text-white display-4" href="#portfolio"><span class="mbri-features mbr-iconfont mbr-iconfont-btn"></span>    
+                    Our Projects </a>
+                </li>
+
+                <li class="nav-item"><a style="color: white; font-size: 2rem" class="nav-link link text-white display-4" href="#contact"><span class="mbri-info mbr-iconfont mbr-iconfont-btn"></span>
+                        Contact </a>
+                </li>
+
+            </ul>
+            <div class="navbar-buttons mbr-section-btn">
+                <a class="btn btn-sm btn-primary display-4" data-toggle="modal" data-target="#loginDialog"><span class="mbri-smile-face mbr-iconfont mbr-iconfont-btn"></span> Login Now 
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <!-- Banner -->
+        <div class="text-vertical-center">
+            <!-- <div class="col-md-12 align-center"> -->
+            <h1 class="mbr-section-title pb-3 mbr-white mbr-bold mbr-fonts-style display-1" style="color: red">BÁCH KHOA UNIVERSITY</h1>
+             <p class="mbr-text pb-3 mbr-white mbr-fonts-style display-5" style="color: yellow; font-size: 2em">Hồ Chí Minh City University Of Technology</p>
+            <br>
+            <a href="#about" class="btn btn-dark btn-lg"><i class="mbri-down mbr-iconfont"></i> Find Out More</a>
+        </div> 
+
+     </header>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="row">
+             <div class="col-lg-12 text-center">    
+                <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <p><h2><i><a href="http://www4.hcmut.edu.vn/~tqvinh/index.html" target="_blank">Vinh Quang Truong</a><br>Instructor <br>PhD.,<br>Deputy Head of DE</i></h2></p>
+                            </div>
+                </div>
+
+                <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <p><h2><i><a href="http://github.com/LeVanHoangPhuong">Phuong Le Van Hoang</a><br>Leader <br>Electronics Engineering <br> Web Developer, Embedded Linux</i></h2></p>
+                            </div>
+                </div>
+
+                <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <p><h2><i><a href="https://www.facebook.com/profile.php?id=100010393391588" target="_blank">Nguyen Trung Hieu</a> <br>Member <br>Electronics Engineering <br>Hardware Designer</i></h2></p>
+                            </div>
+                </div>
+
+                <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <p><h2><i><a href="https://www.facebook.com/nhan.nguyenhuu.3998" target="_blank">Huu Nhan Nguyen</a> <br>Member <br>Electronics Engineering <br>Embedded System Programmer</i></h2></p>
+                            </div>
+                </div>
+
+            </div>
+
+            </div>
+
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+        <div>
+            <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
+                <a style="color: black" href="#services">
+                    <i class="mbri-down mbr-iconfont"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services -->
+    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+    <section id="services" class="services bg-primary">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Our Solutions</h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Embedded System Design</strong>
+                                </h4>
+                                <p>Design and programming Embedded System</p>
+                                <!-- <a href="#" class="btn btn-light">Learn More</a> -->
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Embedded Linux</strong>
+                                </h4>
+                                <p>Userspace Programming<br/> Kernel Builder</p>
+                                <!-- <a href="#" class="btn btn-light">Learn More</a> -->
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Web Developing</strong>
+                                </h4>
+                                <p>Front-tend Design<br>Backend Design<br>Sailsjs, Nodejs, Angularjs, Javascript</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Database</strong>
+                                </h4>
+                                <p>Working with MySQL, MongoDB, Postgresql, MaridaDB</p>
+                                <!-- <a href="#" class="btn btn-light">Learn More</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+
+    <!-- Callout -->
+    <aside class="callout">
+        <div class="text-vertical-center">
+            <!-- <h1>Vertically Centered Text</h1> -->
+        </div>
+    </aside>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h2>Our Work</h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="#">
+                                    <img class="img-portfolio img-responsive" src="./images/web.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="https://sailsjs.com/">
+                                    <img class="img-portfolio img-responsive" src="./images/sails-node.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="https://github.com/LeVanHoangPhuong/Automatic-Control-via-Internet">
+                                    <img class="img-portfolio img-responsive" src="./images/rpi.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="http://www.quectel.com/">
+                                    <img class="img-portfolio img-responsive" src="./images/quectel.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="http://www.quectel.com/">
+                                    <img class="img-portfolio img-responsive" src="./images/IoT.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="http://www.quectel.com/">
+                                    <img class="img-portfolio img-responsive" src="./images/web.jpg">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                    <!-- <a class="btn btn-dark" data-toggle="modal" data-target="#moreOurWork">More</a> -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+
+    <section id="project" class="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h2>Our Projects</h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="https://github.com/LeVanHoangPhuong/Automatic-Control-via-Internet" target="_blank"><h4><i style="color: blue">Automatic Control via Internet</i></h4>
+                                    <img class="img-portfolio img-responsive" src="./images/homepage/door.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="https://github.com/LeVanHoangPhuong/Biometric-Indentification-Security" target="_blank"><h4><i style="color: blue">Biometrics Indentification and Security</i></h4>
+                                    <img class="img-portfolio img-responsive" src="./images/homepage/biometric.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="https://github.com/LeVanHoangPhuong/Event-info-extraction-from-flyers" target="_blank"><h4><i style="color: blue">Event Info Extraction from Flyers</i></h4>
+                                    <img class="img-portfolio img-responsive" src="./images/homepage/poster.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="https://github.com/LeVanHoangPhuong/Trailers-Tracking-and-Monitoring-System" target="_blank"><h4><i style="color: blue">Low Power Monitoring Device <br>for Long-trip Cold Container</i></h4>
+                                    <img class="img-portfolio img-responsive" src="./images/homepage/container.jpg">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                    <!-- <a class="btn btn-dark" data-toggle="modal" data-target="#moreOurWork">More</a> -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>      
+
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>University of Technology</strong>
+                    </h4>
+                    <p><a href="https://www.google.com/maps/dir//Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+B%C3%A1ch+khoa+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh,+L%C3%BD+Th%C6%B0%E1%BB%9Dng+Ki%E1%BB%87t,+Qu%E1%BA%ADn+10,+H%E1%BB%93+Ch%C3%AD+Minh/@10.7717307,106.6598163,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x31752ec3c161a3fb:0xef77cd47a1cc691e!2m2!1d106.6598146!2d10.7734543!3e2">268 Ly Thuong Kiet Street <br>Ho Chi Minh City, Vietnam</a></p> 
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (+84) 98 190 8 904</li>
+                        <li><i class="fa fa-envelope-o fa-fw fa-1x"></i> <a href="mailto:hpcqt97@gmail.com">hpcqt97@gmail.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://www.facebook.com/phuonglevanhoangbk"><i class="fa fa-facebook fa-fw fa-4x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-4x"></i></a>
+                        </li>
+                        <li>
+                            <a href="http://github.com/LeVanHoangPhuong"><i class="fa fa-github fa-4x"></i></a>
+                        </li>
+                         <li>
+                            <a href="http://github.com/LeVanHoangPhuong"><i class="fa fa-youtube fa-4x"></i></a>
+                        </li>
+
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; <a href="https://github.com/LeVanHoangPhuong">Phuong Le Van Hoang</a> 2018</p>
+                </div>
+            </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="./js/dependencies/homepage/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./js/dependencies/homepage/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    //#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function() {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+    // Disable Google Maps scrolling
+    // See http://stackoverflow.com/a/25904582/1607849
+    // Disable scroll zooming and bind back the click event
+    var onMapMouseleaveHandler = function(event) {
+        var that = $(this);
+        that.on('click', onMapClickHandler);
+        that.off('mouseleave', onMapMouseleaveHandler);
+        that.find('iframe').css("pointer-events", "none");
+    }
+    var onMapClickHandler = function(event) {
+            var that = $(this);
+            // Disable the click handler until the user leaves the map area
+            that.off('click', onMapClickHandler);
+            // Enable scrolling zoom
+            that.find('iframe').css("pointer-events", "auto");
+            // Handle the mouse leave event
+            that.on('mouseleave', onMapMouseleaveHandler);
+        }
+        // Enable map zooming with mouse scroll when the user clicks the map
+    $('.map').on('click', onMapClickHandler);
+    </script>
+
+</body>
+
+    <!-- L O G I N - F O R M - F L O A T E D -->
+<div class="modal fade" id="loginDialog" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Login</h4>
+      </div>
+      <div class="modal-body">
+        <form ng-submit="submitLoginForm()">
+          <div>
+
+            <!-- Email -->
+            <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="fa fa-envelope" style="font-size: 1em"> Email |</i>
+                  <i class="fa fa-user" style="font-size: 1em"> Username:  </i>
+                </span>
+                <input ng-model="loginForm.email_username" title="Email" name="email_username" type="text" placeholder="e.g anonymous/ anonymous@gmail.com" class="form-control" autocomplete='email' autofocus> 
+            </div>
+
+              <!-- Password -->
+            <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="fa fa-lock" style="font-size: 1em"> Password:</i>
+                </span>
+                <input ng-model="loginForm.password" title="Password" name="password" type="password" placeholder="e.g 123**" class="form-control" autocomplete="current-password">
+            </div>
+          </div>
+                <!-- <input type="hidden" name="_csrf" value="<%= _csrf %>" /> -->
+          <button type="submit" class="btn btn-primary">
+            <span ng-show="loginForm.loading" class="fa fa-spinner"></span>
+            <span ng-show="loginForm.loading" style="color: red">Signing in ...</span>
+            <span ng-show="!loginForm.loading">Sign in</span>
+          </button>
+
+          <button type="reset" class="btn btn-primary">
+            Reset
+          </button> 
+            <h4><i><a href="/forgotPassword">Forgot your password?</a></i></h4>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a type="button" class="btn btn-default btn-primary" href="/signup">Sign Up</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/dependencies/angular.1.3.js"></script>
+<script src="/js/dependencies/sails.io.js"></script>
+<script src="/js/dependencies/homepage/jquery.min.js"></script>
+<script src="/js/dependencies/angular-toastr.js"></script>
+<script src="/js/dependencies/homepage/jquery.js"></script>
+<script src="/js/dependencies/compareTo.module.js"></script>
+<script src="/js/controllers/public/homepage/HomepageModule.js"></script>
+<script src="/js/controllers/public/homepage/HomepageController.js"></script>
+<!--SCRIPTS END-->
+
+
+</html>

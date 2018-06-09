@@ -1,0 +1,24 @@
+html{
+    background-color: #ffffff;
+    font-size: 12px;
+    color: #202020;
+    width: 100%;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    font-family: 'open_sanslight';
+    font-weight: 300;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0px
+  margin: 0;
+}
+
+li {
+	padding-left: 3px;
+	margin-left: 10px;
+	margin-right: 2px;
+	padding-top: 10px;
+}

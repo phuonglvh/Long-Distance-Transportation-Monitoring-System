@@ -1,0 +1,60 @@
+      <!--  DataTables Card-->
+    <link href="/styles/dashboard/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-table"></i> 
+        
+        <!-- ADMIN -->
+        <span ng-show="me.admin" style="padding-right: 2rem">Lịch sử dịch vụ</span>
+        <a class="btn btn-primary" ng-click="GetHistoryList()" ng-show="me.admin"><i class="fa fa-search"></i> Tất cả</a>
+
+         <!-- GetHistoryByDevID -->   
+        <span><i class="fa fa-search" style="padding-left:2rem;"  ng-show="me.admin"></i> Tìm bởi mã thiết bị</span>
+        
+        <select type="number" id="SearchHistoryListByDevID" ng-show="me.admin" ng-change="GetHistoryListByDevID(GetHistory_DevId)" ng-model="GetHistory_DevId"></select>
+
+         <!-- GetHistoryByDevID --> 
+         <span><i class="fa fa-search" style="padding-left:2rem;"  ng-show="me.admin"></i> Tìm bởi tên đăng nhập</span>  
+        
+        <select type="text" id="SearchHistoryListByRenter_Email_ID" ng-show="me.admin" ng-change="GetHistoryListByRenter_Email_ID(GetHistory_Email_ID)" ng-model="GetHistory_Email_ID"></select>
+
+    </div><!-- card-header -->
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <!-- Just Admin -->
+        <table class="table table-bordered" id="HistoryListTable" width="100%" cellspacing="0" ng-show="me.admin">               
+          <thead>
+            <tr>
+              <th>Mã dịch vụ</th>
+              <th>Mã thiết bị</th>
+              <th>Tên thiết bị</th>
+              <th>Khách hàng</th>
+              <th>Hiệu lực</th>
+              <th>Có hiệu lực</th>
+              <th>Vô hiệu lực</th>
+              <th>Vĩ độ điểm khởi hành</th>
+              <th>Kinh độ điểm khởi hành</th>
+              <th>Vĩ độ đích đến</th>
+              <th>Kinh độ đích đến</th>
+              <th>Ghi chú</th>            
+            </tr>
+          </thead>
+          <tbody>
+          </tbody> 
+        </table><!-- ./admin table -->
+
+      </div><!-- table-responsive -->
+    </div><!-- card-body -->
+
+    <div class="card-footer small text-muted">Đã cập nhật: 11:59 PM
+    </div><!-- ard-footer -->
+      
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+  </div> <!-- <div class="card mb-3"> -->
+
+ 

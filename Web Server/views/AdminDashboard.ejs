@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Hệ thống giám sát vận tải đường dài</title>
+  <!-- T A B I C O N -->
+    <link rel="icon" type="image/png" href="/images/static/ico_1.png">
+
+  <!-- Custom fonts for this template-->
+  <link href="/styles/dashboard/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template-->
+  <link href="/styles/dashboard/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/styles/dashboard/css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/styles/dashboard/custom/custom.css">
+  <link rel="stylesheet" type="text/css" href="/styles/angular-toastr.css">
+  <link rel="stylesheet" type="text/css" href="/styles/ng-cloak.css">
+  <script type="text/javascript">
+    window.SAILS_LOCALS = {
+      me: <%- typeof me !== 'undefined' ? JSON.stringify(me) : 'null' %>
+    };
+    </script>
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" ng-app="DashboardModule" ng-controller="DashboardController" ng-cloak id="page-top">
+
+<!--  <div id="snackbar"></div>-->
+
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="/dashboard">
+      <i class="fa fa-fw fa-sellsy"></i>
+      <span class="nav-link-text" style="color: yellow">Hệ thống giám sát vận tải đường dài</span>
+    </a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+			
+			<!-- My device list item --> <!--ng-init="GetDevList()" ng-click="GetDevList()"-->
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="danh sách thiết bị" ng-init="GetDevList()" ng-click="GetDevList()">
+          <a id="mydevice-tab" class="nav-link" href="/dashboard">
+            <i class="fa fa-fw fa-list-ol"></i>
+            <span class="nav-link-text" style="color: white">Danh sách thiết bị</span>
+          </a>
+        </li>
+
+        <!-- My service -->
+        <li id="myservice-tab" class="nav-item" data-toggle="tooltip" data-placement="right" title="Thông tin dịch vụ" ng-click="GetServiceList()">
+          <a class="nav-link">
+            <i class="fa fa-fw fa-info-circle"></i>
+            <span class="nav-link-text" style="color: white">Thông tin dịch vụ</span>
+          </a>
+        </li>
+
+
+        <!-- Service history tab -->
+        <li id="ServiceHistory-tab" class="nav-item" data-toggle="tooltip" data-placement="right" title="Lịch sử dịch vụ" ng-click="InitServiceHistoryView()">
+          <a class="nav-link">
+            <i class="fa fa-history"></i>            
+            <span class="nav-link-text" style="color: white">Lịch sử dịch vụ</span>
+          </a>
+        </li>
+
+      </ul>
+
+         <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-double-left"></i>
+          </a>
+        </li>
+      </ul>
+
+
+      <ul class="navbar-nav ml-auto" >
+
+          <li id="google_translation" style="padding-right: 3rem"></li>
+
+         <!-- U S E R N A M E H E R E -->
+         <li class="nav-item" ng-show="me.id">
+            <!-- SHOW ID -->
+            <a href="/profile/<%= me.username %>" class="pointer" style="color: yellow"><i class="fa fa-odnoklassniki"></i> {{me.id}}</a>
+            <!-- admin control-->
+            <a href="/profile/<%= me.username %>" ng-show="me.admin" style="color: yellow"><i class="fa fa-universal-access" style="color: white"></i> Quản trị viên </a>
+            <a ng-show="!me.admin"  style="color: yellow"><i class="fa fa-user-circle" style="color: white"></i> Khách hàng </a>
+
+            <!-- gravatarURL -->
+            <img class="gravatarSm" ng-src="{{me.gravatarURL}}" height="30" char="30"/>
+            <!-- email -->
+            <a href="/profile/<%= me.username %>" class="pointer" style="color: yellow"> {{me.username}}</a>
+            <!-- Log out button -->
+             <a class="pointer" data-toggle="modal" data-target="#readytoLeave" style="color: white"><i class="fa fa-fw fa-sign-out"></i>Đăng xuất</a>
+            </a>
+
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="content-wrapper">
+
+    <!-- progress bar show Dashboard/My Dashboard -->
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/dashboard" id="breadcrumb">Danh sách thiết bị</a>
+        </li>
+        <li id="progressbar" class="breadcrumb-item active"></li> <!-- insert later using tabSelect.js -->
+      </ol>
+
+      <div id="mydevice" style="display: none;">
+        <% include tabview/admin/mydevice %>
+      </div>
+
+      <div id="myservice" style="display: none;">
+        <% include tabview/admin/service %>
+      </div>
+        
+      <div id="ServiceHistory" style="display: none;">
+      <% include tabview/admin/ServiceHistory %>
+      </div>
+
+        </div>
+
+    </div>
+
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <!-- <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © <a href="https://github.com/LeVanHoangPhuong/">Lê Văn Hoàng Phương</a> 2018</small>
+        </div>
+      </div>
+    </footer> -->
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+  <!-- Bootstrap core JavaScript-->
+    <script src="/js/dependencies/sails.io.js"></script>
+
+    <script src="/js/dependencies/angular.1.3.js"></script>
+    <script src="/js/dependencies/angular-toastr.js"></script>
+    <script src="/js/dependencies/compareTo.module.js"></script>
+
+    <script src="/js/controllers/private/dashboard/admin/view/DashboardModule.js"></script>
+    <script src="/js/controllers/private/dashboard/admin/view/DashboardController.js"></script>
+    <script src="/js/controllers/private/dashboard/admin/custom/tabSelect.js"></script>
+    <!-- <script src="js/controllers/private/dashboard/custom/performance.js"></script> -->
+
+    <!-- ALL TABS -->
+    <script src="/js/dependencies/dashboard/vendor/jquery/jquery.min.js"></script>
+    <script src="/js/dependencies/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/dependencies/dashboard/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/js/dependencies/dashboard/js/sb-admin.min.js"></script>
+
+
+    <!-- TABLE TAB -->
+    <script src="/js/dependencies/dashboard/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="/js/dependencies/dashboard/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="/js/dependencies/dashboard/js/sb-admin-datatables.min.js"></script>
+
+    <!-- CHART TAB -->
+    <script src="/js/controllers/private/dashboard/admin/tab/canvasjs.min.js"></script>
+    <script>
+      function FlotChart(){
+        var dataPoints1 = [];
+        var dataPoints2 = [];
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+          zoomEnabled: true,
+          exportEnabled: true,
+          animationEnabled: true,
+          title: {
+            text: "Humidity and Temperature versus timestamp"
+          },
+          // axisX: {
+            // title: "chart updates every " + document.getElementById()
+          // },
+          axisY:{
+            includeZero: false
+          }, 
+          toolTip: {
+            shared: true
+          },
+          legend: {
+            cursor:"pointer",
+            verticalAlign: "top",
+            fontSize: 22,
+            fontColor: "dimGrey",
+            itemclick : toggleDataSeries
+          },
+          data: [{ 
+            type: "spline",
+            // xValueType: "string",
+            // yValueFormatString: "####",
+            // xValueFormatString: "####",
+            showInLegend: true,
+            name: "Humidity",
+            dataPoints: dataPoints1
+            },
+            {       
+              type: "spline",
+              // visible: false,
+              // xValueType: "string",
+              // yValueFormatString: "####.00",
+              showInLegend: true,
+              name: "Temperature" ,
+              dataPoints: dataPoints2
+          }]
+        });/*var chart*/
+
+        function toggleDataSeries(e) {
+          if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+            e.dataSeries.visible = false;
+          }
+          else {
+            e.dataSeries.visible = true;
+          }
+          chart.render();
+        }/*toggleDataSeries*/
+
+        var updateInterval = 1000;
+        var LastPacketid = 0;
+        var LastInput = 0;
+        var totalDisplayedPoints = 0;
+        var SearchChartByDevId = document.getElementById('SearchChartByDevId').value;
+
+
+        function updateChart(chart) {
+          if($.isNumeric(SearchChartByDevId) && SearchChartByDevId > 0){
+            totalDisplayedPoints = document.getElementById('totalDisplayedPoints').value;
+              if($.isNumeric(totalDisplayedPoints)){
+
+              document.getElementById('chart-warning').innerHTML = '';
+              if(document.getElementById('SearchChartByDevId').value != LastInput){
+                LastInput = document.getElementById('SearchChartByDevId').value;
+                LastPacketid = 0;   
+              }//if
+
+              $.get('/data_collect/GetDevDataByID/'+ document.getElementById('SearchChartByDevId').value, 
+                function(getRes, status){
+
+                  // console.log('post status: ' + status);
+                  if(status != 'success'){
+                    document.getElementById('SearchChartByDevId').setAttribute('placeholder', "Wrong ID");
+                  }
+                  // console.log('res: ' + getRes.length + '>>' + JSON.stringify(getRes));
+                  console.log(LastPacketid);
+                  if(LastPacketid <  getRes[getRes.length -1].packetid){
+                    
+
+                    for (var i = LastPacketid; i < getRes.length; i++) {
+                      // pushing the new values
+                      dataPoints1.push({
+                        label: new Date(getRes[i].createdAt).toLocaleString(),
+                        y: getRes[i].humid
+                      });
+                      
+
+                      dataPoints2.push({
+                        label: new Date(getRes[i].createdAt).toLocaleString(),
+                        y: getRes[i].temp
+                      });
+
+                    }//for
+                    var prevdps2Length = dataPoints2.length;
+                    var prevdps1Length = dataPoints1.length;
+                    if(prevdps2Length > totalDisplayedPoints)
+                    {
+                      for (var i = 0; i < prevdps2Length - totalDisplayedPoints; i++) {
+                        dataPoints2.shift();
+                      }
+                    }
+
+                    if(prevdps1Length > totalDisplayedPoints)
+                    {
+                      for (var i = 0; i < prevdps1Length - totalDisplayedPoints; i++) {
+                        dataPoints1.shift();
+                        // console.log('shifted:' + dataPoints1);
+                      }
+                    }
+                    LastPacketid = getRes[getRes.length -1].packetid;
+                    chart.options.data[0].legendText = " Humidity: " + getRes[getRes.length -1].humid;
+                    chart.options.data[1].legendText = " Temperature: " + getRes[getRes.length -1].temp; 
+                    chart.render();
+                    document.getElementById('chart-updated-status').innerHTML = 'Updated At: ' +new Date().toLocaleString();
+                    
+                  }//if new
+
+              });//get 
+
+            }//if 2
+
+          }//if 1
+          else{
+            document.getElementById('SearchChartByDevId').setAttribute('placeholder', "Must Input Device ID");
+            document.getElementById('totalDisplayedPoints').setAttribute('placeholder', "Must Input #Points");
+            document.getElementById('chart-warning').innerHTML = 'Current spline stopped updating!';
+            document.getElementById('chart-updated-status').innerHTML = 'Not Updated';
+
+          }
+        }//*updateChart*/
+
+        if($.isNumeric(SearchChartByDevId) && SearchChartByDevId > 0){
+          setInterval(function(){ updateChart(chart) }, updateInterval);
+        }
+      }
+    </script>
+
+
+    <!-- GOOGLE TRANSLATION -->    
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,vi,ja', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translation');
+      }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>    
+
+</body>
+
+
+<!-- Popup LOG-OUT Modal-->
+    <div class="modal fade" id="readytoLeave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn đăng xuất?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">X</span>
+            </button>
+          </div>
+          <div class="modal-body">Nhấn "Đăng xuất" nếu bạn đã sẵn sàng rời khỏi.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal"><i class="fa fa-window-close"></i> Đóng</button>
+            <a class="btn btn-primary" ng-click="logout()"><i class="fa fa-fw fa-sign-out"></i> Đăng xuất</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</html>

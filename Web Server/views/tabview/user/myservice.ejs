@@ -1,0 +1,41 @@
+      <!--  DataTables Card-->
+    <link href="/styles/dashboard/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <div class="card mb-3">
+    <div class="card-header" ng-onload="GetServiceList()">
+      <i class="fa fa-table"></i> 
+        <!-- USER -->
+        <span ng-show="!me.admin">Thông tin dịch vụ</span>
+          <i class="fa fa-search" style="padding-left:5em;"  ng-show="!me.admin"></i>
+          <select id="SearchServiceDataByDevId" type="number" ng-change="GetServiceDataByID(DevId)" ng-model="DevId" ng-show="!me.admin"></select>
+  		
+    </div><!-- card-header -->
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <!-- Normal User -->
+        <table ng-show="!me.admin" class="table table-bordered" width="100%" id="UserServiceListTable" cellspacing="0">
+            <thead>
+               <tr>
+                <th>Mã dịch vụ</th>
+                <th>Mã thiết bị</th>
+                <th>Tên thiết bị</th>
+                <th>Thông số thiết bị</th>
+                <th>Có hiệu lực</th>
+                <th>Ghi chú</th>
+                <th>Được tạo</th>
+                <th>Chỉnh sửa cuối</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+        </table> <!-- ./user table -->
+
+      </div><!-- table-responsive -->
+    </div><!-- card-body -->
+
+    <div class="card-footer small text-muted">Cập nhật ngày hôm qua lúc 11:59 PM
+    </div><!-- card-footer -->
+      
+  </div> <!-- <div class="card mb-3"> -->
+
+ 

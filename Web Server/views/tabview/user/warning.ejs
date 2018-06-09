@@ -1,0 +1,148 @@
+  <link href="/styles/dashboard/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <div class="card mb-3">
+      <div class="card-header">
+        <i class="fa fa-table"></i> Ngưỡng nhiệt độ - độ ẩm
+      </div><!-- card-header -->
+
+    <div class="card-body">
+      <div class="table-responsive">
+         <table class="table table-bordered" width="100%" id="MyThresholdTable" cellspacing="0">
+            <thead>
+               <tr>
+                <th>Mã thiết bị</th>
+                <th>Độ ẩm cao nhất</th>
+                <th>Độ ẩm thấp nhất</th>
+                <th>Nhiệt độ cao nhất</th>
+                <th>Nhiệt độ thấp nhất</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+        <button ng-show="!me.admin" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#UpdateThresholdDialog">Cập nhật</button> 
+
+
+        <button ng-show="!me.admin" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#RemoveThresholdDialog">Xóa ngưỡng</button>
+
+      </div><!-- table-responsive -->
+    </div><!-- card-body -->
+
+    <div class="card-footer small text-muted">Cập nhật ngày hôm qua lúc 11:59 PM
+    </div><!-- card-footer -->  
+  </div> <!-- <div class="card mb-3"> -->
+
+
+<!-- Warning table -->
+<div class="card mb-3">
+      <div class="card-header">
+        <i class="fa fa-table"></i> Lịch sử cảnh báo
+        <a class="btn btn-primary" ng-click="GetWarningList()"><i class="fa fa-retweet"></i> Cập nhật</a>
+      </div><!-- card-header -->
+
+   <div class="card-body">
+      <div class="table-responsive">
+         <table class="table table-bordered" width="100%" id="MyWarningTable" cellspacing="0">
+            <thead>
+               <tr>
+                <th>Mã thiết bị</th> 
+                <th>Nội dung</th>
+                <th>Thời điểm</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+      </div><!-- table-responsive -->
+    </div><!-- card-body -->
+
+    <div class="card-footer small text-muted">Cập nhật ngày hôm qua lúc 11:59 PM
+    </div><!-- card-footer -->
+      
+  </div> <!-- <div class="card mb-3"> -->
+    <!-- Warning table -->
+    
+
+  <!-- UPDATE THRESHOLD-->
+  <div class="modal fade" id="UpdateThresholdDialog" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times-circle"></i></button>
+          <h4 class="modal-title">Cập nhật ngưỡng</h4> 
+        </div>
+        <div class="modal-body">
+          <form ng-submit="submitUpdateThreshold()" id="form-UpdateThreshold" autocomplete>
+              <label for="name" class="control-label">Mã thiết bị</label>
+              <input title="Device ID" name="DeviceId" type="number" placeholder="e.g 123" class="form-control" ng-model="UpdateThresholdForm.devid" autofocus> 
+
+              <label for="name" class="control-label">Nhiệt độ cao nhất</label>
+              <input title="upperTemp" name="upperTemp" type="number" placeholder="e.g 40" class="form-control" ng-model="UpdateThresholdForm.upperTemp"> 
+
+              <label for="name" class="control-label">Nhiệt độ thấp nhất</label>
+              <input title="lowerTemp" name="lowerTemp" type="number" placeholder="e.g 20" class="form-control" ng-model="UpdateThresholdForm.lowerTemp"> 
+
+            <label for="name" class="control-label">Độ ẩm cao nhất</label>
+              <input title="upperHumid" name="upperHumid" type="number" placeholder="e.g 90" class="form-control" ng-model="UpdateThresholdForm.upperHumid"> 
+
+              <label for="name" class="control-label">Độ ẩm thấp nhất</label>
+              <input title="lowerHumid" name="lowerHumid" type="number" placeholder="e.g 60" class="form-control" ng-model="UpdateThresholdForm.lowerHumid"> 
+
+            <div style="margin-top: 20px"> 
+              <button id="button-UpdateThreshold" type="submit" class="btn btn-primary">
+                Cập nhật
+              </button>
+              <button type="reset" class="btn btn-primary">
+                Xóa thông tin
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ <!-- REMOVE THRESHOLD -->
+  <div class="modal fade" id="RemoveThresholdDialog" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times-circle"></i></button>
+          <h4 class="modal-title">Xóa ngưỡng</h4> 
+        </div>
+        <div class="modal-body">
+          <form ng-submit="submitRemoveThreshold(DevId)" id="form-RemoveThreshold">
+            <label for="name" class="control-label">Mã thiết bị</label>
+              <input title="Device ID" name="DeviceId" type="number" placeholder="e.g 123" class="form-control" ng-model="DevId" autofocus> 
+              
+            <div style="margin-top: 20px"> 
+              <button type="submit" class="btn btn-primary" id="button-RemoveThreshold">
+                Xóa ngưỡng
+              </button>
+              <button type="reset" class="btn btn-primary">
+                Xóa mã thiết bị
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+
+ 
+ 

@@ -1,0 +1,131 @@
+      <!--  DataTables Card-->
+<link href="/styles/dashboard/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-table" ng-show="me.admin"></i> <span ng-show="me.admin" >Quản lý dịch vụ</span>
+  
+    </div><!-- card-header -->
+
+    <div class="card-body">
+      <div  class="table-responsive">
+        <!-- Amin only -->
+          <table ng-show="me.admin" class="table table-bordered" width="100%" id="AdminServiceListTable" cellspacing="0"> 
+            <thead>
+               <tr>
+                <th>Mã dịch vụ</th>
+                <th>Mã thiết bị</th>
+                <th>Tên thiết bị</th>
+                <th>Thông số</th>
+                <th>Khách hàng</th>
+                <th>Hiệu lực</th>
+                <th>Vĩ độ điểm khởi hành</th>
+                <th>Kinh độ điểm khởi hành</th>
+                <th>Vĩ độ đích đến</th>
+                <th>Kinh độ đích đến</th>
+                <th>Ghi chú</th>
+                <th>Khởi tạo</th>
+                <th>Chỉnh sửa cuối</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+
+          <button ng-show="me.admin" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#AddServiceDialog">Tạo mới</button> <!-- ./admin table -->
+
+          <button ng-show="me.admin" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ChangeValidServiceDialog">Vô hiệu dịch vụ</button> 
+
+      </div><!-- table-responsive -->
+    </div><!-- card-body -->
+
+    <div class="card-footer small text-muted">Cập nhật ngày hôm qua lúc 11:59 PM
+    </div><!-- card-footer -->
+      
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+  </div> <!-- <div class="card mb-3"> -->
+
+<!-- ADD SERVICE -->
+<div class="modal fade" id="AddServiceDialog" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times-circle"></i></button>
+        <h4 class="modal-title"> Thêm dịch vụ</h4> 
+      </div>
+      <div class="modal-body">
+        <form ng-submit="SumitAddService()" id="form-AddService">
+          <label for="name" class="control-label">Mã thiết bị</label>
+            <input title="Device ID" name="devid" type="text" placeholder="e.g 123" class="form-control" ng-model="AddServiceForm.devid"> 
+
+            <label for="name" class="control-label">Email khách hàng</label>
+            <input title="Renter Email" name="renterEmail" type="email" placeholder="e.g anonymous@gmail.com" class="form-control" ng-model="AddServiceForm.RenterEmail" autocomplete='email' required> 
+
+          <label for="map" class="control-label">Vĩ độ điểm khởi hành</label>
+            <input title="Departure Lat" name="dep_Lat" list="map-list" class="form-control" placeholder="e.g 123.45" ng-model="AddServiceForm.dep_Lat">
+           <!--  <datalist id="map-list">
+            </datalist> -->
+
+          <label for="bssid" class="control-label">Kinh độ điểm khởi hành</label>
+            <input title="Departure Long" name="dep_Long" type="text" placeholder="e.g 123.45" class="form-control" ng-model="AddServiceForm.dep_Long">
+
+          <label for="ssid" class="control-label">Vĩ độ đích đến</label>
+            <input title="Destination Lat" name="des_Lat" type="text" placeholder="e.g 321.54" class="form-control" ng-model="AddServiceForm.des_Lat">
+
+          <label for="posX" class="control-label">Kinh độ đích đến</label>
+            <input title="Destination Long" name="des_Long" type="text" placeholder="e.g 321.54" class="form-control" ng-model="AddServiceForm.des_Long"> 
+
+          <label for="posY" class="control-label">Ghi chú</label>
+            <input title="Notes" name="note" type="text" placeholder="e.g Is waiting for lift" class="form-control" ng-model="AddServiceForm.note">    
+
+          <div style="margin-top: 20px"> 
+            <button type="submit" class="btn btn-primary">
+              Tạo mới
+            </button>
+            <button type="reset" class="btn btn-primary">
+              Xóa thông tin
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- CHANGE VALID SERVICE -->
+  <div class="modal fade" id="ChangeValidServiceDialog" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times-circle"></i></button>
+          <h4 class="modal-title">Vô hiệu dịch vụ</h4> 
+        </div>
+        <div class="modal-body">
+          <form ng-submit="submitChangeValidService(ServiceID)" id="form-changevalidService">
+            <label for="name" class="control-label">Mã dịch vụ</label>
+              <input title="Service ID" name="Service ID" type="number" placeholder="e.g 123" class="form-control" ng-model="ServiceID" autofocus> 
+              
+            <div style="margin-top: 20px"> 
+              <button type="submit" class="btn btn-primary">
+                Vô hiệu
+              </button>
+              <button type="reset" class="btn btn-primary">
+                Xóa thông tin
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
