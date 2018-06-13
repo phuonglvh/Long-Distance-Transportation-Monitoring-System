@@ -12,7 +12,7 @@ var async = require('async');
 
 module.exports = {
   GetDevDataByID: function(req, res){
-    console.log('debug: entered GetDevDataByID\n');
+    console.log('debug: entered Data_collectController.GetDevDataByID\n');
     /*check if logged in*/
     if (!req.session.userId || req.session.userId == 'undefined') {
       return res.view('homepage', {
@@ -62,7 +62,7 @@ module.exports = {
 
   PostDevDataByID: function(req, res){
     //debug
-    console.log('debug: entered PostDevDataByID/' + req.param('devid'));
+    console.log('debug: entered Data_collectController.PostDevDataByID/' + req.param('devid'));
     console.log({
       devid: req.param('devid'),
       start: req.param('start'),
@@ -97,7 +97,6 @@ module.exports = {
         if(err){
           return negotiate(err);
         }
-        // console.log(foundServiceRenter);
         /*not found Device or not found renter*/
         if(!foundServiceRenter || !foundServiceRenter.renter || foundServiceRenter.renter.id == 'undefined'){
           return res.notFound();
@@ -115,12 +114,10 @@ module.exports = {
               '<=': new Date(req.param('end')).toLocaleString(),
             },
           }
-        }).sort({packetid: 'ASC'}).exec(function(err, foundDevById) {
+        }).sort({timestamp: 'ASC'}).exec(function(err, foundDevById) {
 
           if (err) return res.negotiate(err);
           if (foundDevById.length === 0) return res.notFound();
-          //debug 
-          console.log('\n' + foundDevById + '\n');
           return res.json(foundDevById);
         });//Data_collect.find
 
@@ -131,7 +128,7 @@ module.exports = {
 
   Get_x_LastestRecord_ByDevId: function(req, res){
     //debug
-    console.log('\n... entered Data_collectController/Get_x_LastestRecord_ByDevId/'+ req.param('devid') + ' : ' + req.param('LastPacketid'));
+    console.log('\n... entered Data_collectController.Get_x_LastestRecord_ByDevId/'+ req.param('devid') + ' : ' + req.param('LastPacketid'));
     /*check if logged in*/
     if (!req.session.userId || req.session.userId == 'undefined') {
       return res.view('homepage', {
@@ -182,7 +179,7 @@ module.exports = {
   },
 
   collectData: function(req, res){ //POST
-    console.log("... entered Data_collectController.collectData\n");
+    console.log("debug: entered Data_collectController.collectData\n");
     console.log('Received data: \n');
     console.log({
             devid : req.param('devid'),
@@ -195,9 +192,9 @@ module.exports = {
             timestamp : new Date(req.param('timestamp')).toLocaleString(),
     });
     /*Check if valid service containing this device*/
-    Service.findOne({devid: req.param('devid')}, function(err, foundOne){
+    Service.findOne({devid: req.param('devid'), valid: true}, function(err, foundOne){
       if(err) return res.negotiate(err);
-      if(!foundOne) return res.badRequest('Device not valid!');
+      if(!foundOne) return res.badRequest('Device/Service not valid!');
        Data_collect.findOne({
           devid: req.param('devid'),
           packetid: req.param('packetid'),
@@ -276,7 +273,7 @@ module.exports = {
                   });
                 }//if
 
-                if(validData.locked != true){ //
+                if((validData.locked == 'false')){ //
                   Warning.create({
                     devid: validData.devid,
                     packetid: validData.packetid,
@@ -304,7 +301,7 @@ module.exports = {
   }, //collectData
 
   GetMapDataByID: function(req, res) {
-    console.log('enter Data_collectController/GetMapData: ' + req.param('DevId'));
+    console.log('debug: enter Data_collectController.GetMapData/ ' + req.param('DevId'));
 
     /*Check if user logged in*/
     if (!req.session.userId || req.session.userId == 'undefined') {
@@ -341,7 +338,7 @@ module.exports = {
         }
 
         /*exact user and device*/
-        Data_collect.find({devid: req.param('DevId')}).sort({packetid: 'ASC'}).exec(function(err, foundMapDataByID) {
+        Data_collect.find({devid: req.param('DevId')}).sort({timestamp: 'ASC'}).exec(function(err, foundMapDataByID) {
           if (err) return res.negotiate(err);
           if (foundMapDataByID.length === 0) return res.notFound();
           for (var i = 0; i < foundMapDataByID.length; i++) {

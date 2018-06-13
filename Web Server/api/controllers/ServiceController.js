@@ -7,7 +7,7 @@
 
 module.exports = {
   AddService: function(req, res){
-  	console.log( 'debug: enter ServiceController/AddService/' + req.param('devid'));
+  	console.log( 'debug: enter ServiceController.AddService/' + req.param('devid'));
   	Service.findOne({
       devid: req.param('devid'),
       valid: true,
@@ -21,6 +21,9 @@ module.exports = {
       if(existingService){
         console.log('Thiết bị này đang được khách hàng sử dụng');
         return res.created("Thiết bị này đang được khách hàng sử dụng!");    
+      }
+      if (_.isUndefined(req.param('RenterEmail'))) {
+        return res.badRequest('Yêu cầu nhập email!');
       }
 	     User.findOne({email: req.param('RenterEmail')}).exec(function(err, foundUserByRenterEmail){
 	   		if(err){
@@ -50,6 +53,7 @@ module.exports = {
   }, //AddService
 
   GetServiceList: function(req, res){
+    console.log( 'debug: enter ServiceController.GetServiceList');
     /*check if logged in*/
     if (!req.session.userId || req.session.userId == 'undefined') {
       return res.view('homepage', {
@@ -70,7 +74,7 @@ module.exports = {
         });
       }//if (!foundUser)
       if(!foundUser.admin){
-        Service.find({renter: req.session.userId}).sort({devid: 'ASC'})
+        Service.find({renter: req.session.userId, valid: true}).sort({devid: 'ASC'})
         .exec(function(err, foundServices){
           if (err) return res.negotiate(err);
           if (foundServices.length === 0) return res.notFound();
@@ -137,6 +141,7 @@ module.exports = {
   }, //GetServiceList
 
   GetServiceDataByID: function(req, res){
+    console.log( 'debug: enter ServiceController.GetServiceDataByID/' + req.param('devid'));
      /*check if logged in*/
     if (!req.session.userId || req.session.userId == 'undefined') {
       return res.view('homepage', {
@@ -186,8 +191,8 @@ module.exports = {
   }, /*GetServiceDataByID*/
 
   GetHistoryList: function(req, res){
-    console.log( 'debug: enter ServiceController/GetHistoryList\n');
 
+    console.log( 'debug: enter ServiceController.GetHistoryList/' + req.param('devid'));
     /*check if logged in*/
     if (!req.session.userId || req.session.userId == 'undefined') {
       return res.view('homepage', {
@@ -247,7 +252,7 @@ module.exports = {
   }, //GetHistoryList
 
   GetHistoryListByDevID: function(req, res){
-    console.log( 'debug: enter ServiceController/GetHistoryListByDevID\n');
+    console.log( 'debug: enter ServiceController.GetHistoryListByDevID\n');
     /*check if logged in*/
     if (!req.session.userId || req.session.userId == 'undefined') {
       return res.view('homepage', {
@@ -310,7 +315,7 @@ module.exports = {
   }, //GetHistoryList
 
   GetHistoryListByRenter_Email_ID: function(req, res){
-    console.log( 'debug: enter ServiceController/GetHistoryListByRenter_Email_ID\n');
+    console.log( 'debug: enter ServiceController.GetHistoryListByRenter_Email_ID\n');
     /*check if logged in*/
     if (!req.session.userId || req.session.userId == 'undefined') {
       return res.view('homepage', {
@@ -373,7 +378,7 @@ module.exports = {
   }, //GetHistoryList
 
   AdminUpdateValid: function(req, res) {
-    console.log('\n .., enter ServiceController/AdminUpdateValid/' + req.param('id'));
+    console.log('\ndebug: enter ServiceController.AdminUpdateValid/' + req.param('id'));
       if (!req.session.userId || req.session.userId == 'undefined') {
         return res.view('homepage', {
           me: null
@@ -409,17 +414,31 @@ module.exports = {
               if(!foundService){
                 return res.badRequest("Admin did not refered to any services");
               }
-            });
-
-          /*check disable admin itself*/
-            Service.update(req.param('id'), {
-              valid: req.param('valid')
-              }).exec(function(err, update) {
-              if (err) return res.negotiate(err);
-              console.log({updated: req.param('id')});
-              return res.ok();
-            });//Service.update
-        
+              /*check disable admin itself*/
+              Service.update({id: req.param('id'), valid: true}, {
+                  valid: req.param('valid')
+                }).exec(function(err, updatedOne) {
+                  if (err) return res.negotiate(err);
+                  if(updatedOne.length){
+                    console.log({UpdatedValidOfService: updatedOne[0].id});
+                    console.log(JSON.stringify(updatedOne));
+                    Data_collect.destroy({devid: updatedOne[0].devid}).exec(function(err, destroyedAll){
+                          if(err){
+                            return res.serverError(err);
+                          }
+                          if(destroyedAll.length){
+                            console.log('Removed all data collected of device: ' + updatedOne[0].devid);
+                          }
+                          return res.ok();
+                    });/*Data_collect.destroy*/
+                  }
+                  else {
+                    console.log('Dịch vụ được yêu cầu không tồn tại!');
+                    return res.notFound();
+                  }
+              });//Service.update
+            });/*Service.findOne*/
+       
         }//else if(foundUser.admin)
 
       });//User.findOne

@@ -14,11 +14,11 @@ module.exports = {
 
   /*L O G I N - ACTION*/
 	login: function(req, res) {
-    console.log('debug: enter user/login action! \n');
+    console.log('debug: enter UserController.login');
     for(var key in req.body) {
       if(req.body.hasOwnProperty(key)){
         var array = req.param(key).split(",");
-      console.log('debug: login debug:' + key);
+      console.log('debug: login ' + key);
       }
     }
     User.findOne({
@@ -67,14 +67,15 @@ module.exports = {
   /*L O G O U T*/
   logout: function(req, res) {
 
+    console.log('debug: enter UserController.logout');
     User.findOne(req.session.userId, function foundUser(err, foundUser) {
       if (err) return res.negotiate(err);
       if (!foundUser) {
-        sails.log.verbose('Session refers to a user who no longer exists.');
+        sails.log.verbose('Phiên làm việc không tồn tại!');
         return res.redirect('/');
       }
       req.session.userId = null;
-      console.log('UserController.logout: 73: ' + foundUser.username);
+      console.log('UserController.logout: ' + foundUser.username);
       return res.ok();
     });
   },
@@ -82,21 +83,21 @@ module.exports = {
 
   /*S I G N U P - ACTION*/
   signup: function(req, res) {
-    console.log('debug: enter signup action\n');
+    console.log('debug: enter UserController.signup\n');
     if (_.isUndefined(req.param('email'))) {
-      return res.badRequest('An email address is required!');
+      return res.badRequest('Yêu cầu nhập email!');
     }
 
     if (_.isUndefined(req.param('password'))) {
-      return res.badRequest('A password is required!');
+      return res.badRequest('Yêu cầu nhập password!');
     }
 
     if (req.param('password').length < 6) {
-      return res.badRequest('Password must be at least 6 characters!');
+      return res.badRequest('Mật khẩu ít nhất 6 ký tự!');
     }
 
     if (_.isUndefined(req.param('username'))) {
-      return res.badRequest('A username is required!');
+      return res.badRequest('Yêu cầu tên đăng nhập!');
     }
     var splitUsername = req.param('username').split(' ').join('-');
 
@@ -175,7 +176,7 @@ module.exports = {
 
   /*A D M I N - U S E R S*/
   adminUsers: function(req, res) {
-    console.log('debug: UserController/adminUsers\n');
+    console.log('debug: UserController.adminUsers\n');
     User.find().exec(function(err, users) {
       if (err) return res.negotiate(err);
       if (users.length === 0) return res.notFound();
@@ -195,6 +196,7 @@ module.exports = {
 
 /*CHANGE ADMIN STATE*/
   updateAdmin: function(req, res) {
+    console.log('debug: enter UserController.updateAdmin');
    if (!req.session.userId || req.session.userId == 'undefined') {
         return res.view('homepage', {
           me: null
@@ -239,6 +241,7 @@ module.exports = {
 
 /*CHANGE BANNED STATE*/
   updateBanned: function(req, res) {
+    console.log('debug: enter UserController.updateBanned');
       if (!req.session.userId || req.session.userId == 'undefined') {
         return res.view('homepage', {
           me: null
@@ -282,6 +285,7 @@ module.exports = {
 
 /*CHANGE DELETED STATE*/
   updateDeleted: function(req, res) {
+    console.log('debug: enter UserController.updateDeleted');
     if (!req.session.userId || req.session.userId == 'undefined') {
         return res.view('homepage', {
           me: null
@@ -325,6 +329,7 @@ module.exports = {
 
 /*CHANGE PASSWORD*/
   changePassword: function(req, res) {
+    console.log('debug: enter UserController.changePassword');
     if (_.isUndefined(req.param('password'))) {
       return res.badRequest('A password is required!');
     }
@@ -347,7 +352,7 @@ module.exports = {
           if (err) {
             return res.negotiate(err);
           }
-         console.log('changePassword ' + req.session.userId + ' : '+ result);
+         console.log('Changed Password: ' + req.session.userId + ' : '+ result);
           return res.json({
             username: updatedUser[0].username});
         });
@@ -358,6 +363,7 @@ module.exports = {
 /*UPDATE GRAVATAR URL*/
   updateGravatarUrl: function(req, res) {
 
+    console.log('debug: enter UserController.updateGravatarUrl');
     User.update({
       id: req.session.userId
     }, {
@@ -365,7 +371,7 @@ module.exports = {
     }, function(err, updatedUser) {
 
       if (err) return res.negotiate(err);
-      console.log('debug: updateGravatarUrl ' + req.session.userId + ' : '+ req.param('gravatarURL'));
+      console.log('Updated GravatarUrl: ' + req.session.userId + ' : '+ req.param('gravatarURL'));
       return res.json({
         username: updatedUser[0].username
       });
@@ -375,6 +381,7 @@ module.exports = {
 
   /*REMOVE PROFILE*/
   removeProfile: function(req, res) {
+    console.log('debug: enter UserController.removeProfile');
     User.update({
       id: req.session.userId
     }, {
@@ -385,7 +392,7 @@ module.exports = {
       if (removedUser.length === 0) {
         return res.notFound();
       }
-      console.log('debug: removeProfile ' + req.session.userId );
+      console.log('Removed Profile: ' + req.session.userId );
       req.session.userId = null;
       return res.ok();
     });

@@ -185,6 +185,7 @@ module.exports = {
 	},
 
 	RemoveDevice: function(req, res) {
+    	console.log('\ndebug: enter DeviceController.RemoveDevice/' + req.param('devid'));
 	   if (!req.session.userId || req.session.userId == 'undefined') {
 	        return res.view('homepage', {
 	          me: null
@@ -211,11 +212,22 @@ module.exports = {
 	        		if(err) return res.negotiate(err);
 	        		if(!foundOne) res.notFound("Thiết bị không tồn tại!");
 
-		        	Device.destroy({devid: req.param('devid')}, function(err, foundOne){
+		        	Device.destroy({devid: req.param('devid')}, function(err, destroyed){
 		        		if(err){
 		        			return res.negotiate(err);
 		        		}
-		        		return res.ok();
+		        		Service.update({devid: req.param('devid')}, {valid: false}).exec(function(err, updatedOnes){
+		        			if(err){
+		        				return res.serverError(err);
+		        			}
+		        			Data_collect.destroy({devid: req.param('devid')}).exec(function(err, destroyedAll){
+		        				if(err){
+		        					return res.serverError(err);
+		        				}
+		        				console.log('Removed Device: ' + req.param('devid'));
+		        				return res.ok();
+		        			});/*Data_collect.destroy*/
+		        		}); /*Service.update*/
 		        	});/*Device.destroy*/
 		        });/*Device.findOne*/
 	        }//else if(foundUser.admin)

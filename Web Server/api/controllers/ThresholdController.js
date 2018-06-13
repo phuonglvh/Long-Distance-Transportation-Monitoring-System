@@ -8,7 +8,7 @@ var async = require('async');
 
 module.exports = {
     GetThresholdList: function(req, res){
-   console.log('... entered ThresholdController/GetThresholdList/' + req.session.userId);
+   console.log('debug: entered ThresholdController.GetThresholdList/:' + req.session.userId);
 
    if (!req.session.userId || req.session.userId == 'undefined') {
       return res.view('homepage', {
@@ -33,8 +33,6 @@ module.exports = {
       Threshold.find({
           select: ['devid', 'upperTemp', 'lowerTemp', 'upperHumid', 'lowerHumid'],
         }).exec(function(err, founds){
-        // console.log('ThresholList of renter' + req.session.userId +' : \n' + JSON.stringify(founds));
-        
         /*copy to allThreshold*/
         var allThreshold = [];
         Service.find({
@@ -55,7 +53,7 @@ module.exports = {
   }, /*GetThresholdList*/
 
   UpdateThreshold: function(req, res){
-	console.log('... entered ThresholdController/UpdateThreshold/' + req.param('devid'));
+	console.log('debug: entered ThresholdController.UpdateThreshold/' + req.param('devid'));
 	console.log({
   			devid: req.param('devid'),
   			upperTemp: req.param('upperTemp'),
@@ -84,9 +82,9 @@ module.exports = {
       }//if
 
       Threshold.findOne({devid: req.param('devid')}, function(err, foundOne){
-          if(err) return res.negotitate(err);
+          if(err) return res.serverError(err);
           if(!foundOne) {
-            console.log("ThresholdController/UpdateThreshold/" + req.param('devid') + 'not successfully!');
+            console.log("ThresholdController.UpdateThreshold/" + req.param('devid') + ' not successfully!');
             return res.notFound();
         }
           Threshold.update({devid: req.param('devid')}, {
@@ -95,7 +93,7 @@ module.exports = {
             upperHumid: req.param('upperHumid'),
             lowerHumid: req.param('lowerHumid'),
           }, function(err, updatedOne){
-            if(err) return res.negotitate(err);
+            if(err) return res.serverError(err);
             console.log(updatedOne);
             return res.ok();
           }); /*Threshold.update*/
@@ -106,7 +104,7 @@ module.exports = {
   },/*Threshold*/
 
   RemoveThreshold: function(req, res){
-		console.log('... entered ThresholdController/RemoveThreshold/' + req.param('devid'));
+		console.log('debug: entered ThresholdController.RemoveThreshold/' + req.param('devid'));
 
       if (!req.session.userId || req.session.userId == 'undefined') {
         return res.view('homepage', {
@@ -127,11 +125,10 @@ module.exports = {
           });
         }//if
 
-        Threshold.findOne({devid: req.param('devid'), renter: req.session.userId}, function(err, foundOne){
-
-          if(err) return res.negotitate(err);
+        Threshold.findOne({devid: req.param('devid')}, function(err, foundOne){
+          if(err) return res.serverError(err);
           if(!foundOne) {
-            console.log("ThresholdController/RemoveThreshold/" + req.param('devid') + 'not successfully!');
+            console.log("ThresholdController.RemoveThreshold/" + req.param('devid') + 'not successfully!');
             return res.notFound();
           }//badRequest("Thiết bị được yêu cầu xóa ngưỡng không tồn tại");
 
@@ -141,7 +138,10 @@ module.exports = {
             upperHumid: 0,
             lowerHumid: 0,
           }, function(err, updatedOne){
-            if(err) return res.negotitate(err);
+            if(err) {
+              console.log(err);
+              return res.serverError(err);
+            }
             console.log('Removed Threshold of devid: '+  req.param('devid'));
             return res.ok();
           }); /*Threshold.update*/

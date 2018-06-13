@@ -21,7 +21,6 @@ module.exports = {
     devid: {
         type: 'integer',
         required: true,
-        // unique: true,
     },
 
     renter: {
