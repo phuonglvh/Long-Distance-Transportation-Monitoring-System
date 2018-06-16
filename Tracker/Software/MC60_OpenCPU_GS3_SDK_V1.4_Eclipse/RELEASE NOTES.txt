@@ -1,0 +1,24 @@
+OpenCPU_GS3_SDK_V1.4
+Sep 19 2017
+
+1.Updated MC20 and MC60 documents.
+
+OpenCPU_GS3_SDK_V1.3
+Sep 26 2016
+
+1.Updated MC20 and MC60 documents.
+2.Added gpio pin.(SIM2_CLK,SIM2_RST,SIM2_DATA,GPIO0~GPIO4)
+3.Provided QL_VSPRINTF API for coustomer.
+
+OpenCPU_GS3_SDK_V1.2
+Aug 15 2016
+
+1.Updated Quectel_OpenCPU_RIL_Application_Note_V1.2.pdf and Quectel_RF_Layout_Application_Note_V2.2.pdf.
+2.Added RIL API of RIL_NTP_START(u8 *server_addr, u16 server_port, CB_NTPCMD cb_NTPCMD_hdl).
+3.Improved example_spi.c with flash locking and unlocking operation.
+
+OpenCPU_GS3_SDK_V1.1
+Jul 27 2016
+
+
+
