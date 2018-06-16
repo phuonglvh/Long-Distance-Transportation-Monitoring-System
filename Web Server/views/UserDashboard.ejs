@@ -354,8 +354,8 @@
 
               $.post('/data_collect/PostDevDataByID', {
                 devid: document.getElementById('SearchChartByDevId').value,
-                start: new Date(document.getElementById('start').value).toLocaleString(),
-                end: new Date(document.getElementById('end').value).toLocaleString(),
+                start: document.getElementById('start').value,
+                end: document.getElementById('end').value,
                 },function(getRes, status){
                   if(LastPacketid <  getRes[getRes.length -1].packetid){
                     for (var i = LastPacketid; i < getRes.length; i++) {

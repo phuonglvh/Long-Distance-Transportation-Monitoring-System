@@ -90,8 +90,8 @@
         if((document.getElementById('SearchMapByDevId').value != "") && (document.getElementById('focusPoints').value != ""))
         {
           $.post('/data_collect/PostMapDataByID', {
-            start: new Date(document.getElementById('start').value).toLocaleString(),
-            end: new Date(document.getElementById('end').value).toLocaleString(),
+            start: document.getElementById('start').value,
+            end: document.getElementById('end').value,
             devid: document.getElementById('SearchMapByDevId').value,
           }, function(data, status){
 
