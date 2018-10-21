@@ -6,7 +6,7 @@ This system is made up of 2 main parts, a web server and trackers. Web server is
 
 ## System model
 <p align="center">
-  <img src="Doc/img/system.png" alt="System model" style="width: 250px; height=300px"/>
+  <img src="Doc/img/system.png" alt="System model" height="200"/>
 </p>
 
 ## Getting Started
@@ -43,23 +43,23 @@ Finally, power on your Kit
 
 ## Some results
 <p align="center">
-  <img src="Doc/img/homepage.png" alt="homepage" style="width: 250px;"/>
+  <img src="Doc/img/homepage.png" alt="homepage" height="200"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/6.png" alt="Dashboard" style="width: 250px;"/>
+  <img src="Doc/img/6.png" alt="Dashboard" height="200"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/7.png" alt="Graph" style="width: 250px;"/>
+  <img src="Doc/img/7.png" alt="Graph" height="200"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/8.png" alt="Map" style="width: 250px;"/>
+  <img src="Doc/img/8.png" alt="Map" height="200"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/3.png" alt="MC60" style="width: 250px;"/>
+  <img src="Doc/img/3.png" alt="MC60" height="200"/>
 </p>
 
 <p align="center">
