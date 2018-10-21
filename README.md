@@ -63,11 +63,11 @@ Finally, power on your Kit
 </p>
 
 <p align="center">
-  <img src="Doc/img/1.png" alt="top" style="width: 200px;"/>
+  <img src="Doc/img/1.png" alt="top" height="200"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/2.jpg" alt="bottom" style="width: 200px;"/>
+  <img src="Doc/img/2.jpg" alt="bottom" height="200"/>
 </p>
 
 ## Team members
