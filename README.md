@@ -43,19 +43,17 @@ Finally, power on your Kit
 
 ## Some results
 <p align="center">
-  <img src="Doc/img/homepage.png" alt="homepage" height="200"/>
+  <img src="Doc/img/homepage.png" alt="homepage" height="180"/>
+  <img src="Doc/img/6.png" alt="Dashboard" height="180"/>
+</p>
+
+
+<p align="center">
+  <img src="Doc/img/7.png" alt="Graph" height="180"/>
+  <img src="Doc/img/8.png" alt="Map" height="180"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/6.png" alt="Dashboard" height="200"/>
-</p>
-
-<p align="center">
-  <img src="Doc/img/7.png" alt="Graph" height="200"/>
-</p>
-
-<p align="center">
-  <img src="Doc/img/8.png" alt="Map" height="200"/>
 </p>
 
 <p align="center">
@@ -64,11 +62,9 @@ Finally, power on your Kit
 
 <p align="center">
   <img src="Doc/img/1.png" alt="top" height="200"/>
-</p>
-
-<p align="center">
   <img src="Doc/img/2.jpg" alt="bottom" height="200"/>
 </p>
+
 
 ## Team members
 
