@@ -6,7 +6,7 @@ This system is made up of 2 main parts, a web server and trackers. Web server is
 
 ## System model
 <p align="center">
-  <img src="Doc/img/system.png" alt="System model" style="width: 400px;"/>
+  <img src="Doc/img/system.png" alt="System model" style="width: 250px;"/>
 </p>
 
 ## Getting Started
@@ -43,31 +43,31 @@ Finally, power on your Kit
 
 ## Some results
 <p align="center">
-  <img src="Doc/img/homepage.png" alt="homepage" style="width: 400px;"/>
+  <img src="Doc/img/homepage.png" alt="homepage" style="width: 250px;"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/6.png" alt="Dashboard" style="width: 400px;"/>
+  <img src="Doc/img/6.png" alt="Dashboard" style="width: 250px;"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/7.png" alt="Graph" style="width: 400px;"/>
+  <img src="Doc/img/7.png" alt="Graph" style="width: 250px;"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/8.png" alt="Map" style="width: 400px;"/>
+  <img src="Doc/img/8.png" alt="Map" style="width: 250px;"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/3.png" alt="MC60" style="width: 400px;"/>
+  <img src="Doc/img/3.png" alt="MC60" style="width: 250px;"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/1.png" alt="top" style="width: 300px;"/>
+  <img src="Doc/img/1.png" alt="top" style="width: 200px;"/>
 </p>
 
 <p align="center">
-  <img src="Doc/img/2.jpg" alt="bottom" style="width: 300px;"/>
+  <img src="Doc/img/2.jpg" alt="bottom" style="width: 200px;"/>
 </p>
 
 ## Team members
