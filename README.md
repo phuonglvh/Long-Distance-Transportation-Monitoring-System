@@ -6,7 +6,7 @@ This system is made up of 2 main parts, a web server and trackers. Web server is
 
 ## System model
 <p align="center">
-  <img src="Doc/img/system.png" alt="System model" style="width: 250px;"/>
+  <img src="Doc/img/system.png" alt="System model" style="width: 250px; height=300px"/>
 </p>
 
 ## Getting Started
